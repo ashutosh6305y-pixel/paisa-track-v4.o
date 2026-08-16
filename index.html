@@ -5204,7 +5204,14 @@ function buildPDFContent(detailed){
     .info-card .v{font-size:17px;font-weight:800;}
     .footer{margin-top:32px;text-align:center;color:#aaa;font-size:11px;padding-top:14px;border-top:1px solid #eee;}
     @media print{body{padding:16px;}@page{margin:1cm;}}
-  </style></head><body>
+  </style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PaisaTrack">
+</head><body>
   <div class="header">
     <h1>💰 PaisaTrack — Financial Report</h1>
     <div class="sub">Period: ${periodLabels[_exportPeriod]} &nbsp;|&nbsp; Generated: ${now}</div>
@@ -6779,5 +6786,14 @@ if (typeof _origUpdateHome === 'function') {
   };
 }
 
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered:', reg.scope))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
 </script>
 </html>
